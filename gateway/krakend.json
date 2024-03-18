@@ -6,7 +6,7 @@
   "timeout": "3s",
   "endpoints": [
     {
-      "endpoint": "/example",
+      "endpoint": "/components/{id}",
       "method": "GET",
       "extra_config": {
         "auth/validator": {
@@ -18,8 +18,8 @@
       },
       "backend": [
         {
-          "url_pattern": "/test",
-          "host": ["http://host.docker.internal:3000"]
+          "url_pattern": "/component/{id}",
+          "host": ["http://host.docker.internal:6000"]
         }
       ]
     }
