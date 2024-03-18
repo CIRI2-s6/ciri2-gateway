@@ -1,0 +1,47 @@
+{
+  "version": 3,
+  "name": "CIRI2 API Gateway",
+  "port": 8080,
+  "cache_ttl": "3600s",
+  "timeout": "3s",
+  "endpoints": [
+    {
+      "endpoint": "/example",
+      "method": "GET",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["http://api.ciri2.com"],
+          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "cache": true
+        }
+      },
+      "backend": [
+        {
+          "url_pattern": "/test",
+          "host": ["http://host.docker.internal:3000"]
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "telemetry/metrics": {
+      "collection_time": "30s",
+      "listen_address": ":8090"
+    },
+    "telemetry/influx": {
+      "address": "http://influxdb:8086",
+      "ttl": "25s",
+      "buffer_size": 100,
+      "username": "krakend-dev",
+      "password": "pas5w0rd"
+    },
+    "security/cors": {
+      "allow_origins": ["*"],
+      "allow_methods": ["POST", "GET"],
+      "allow_headers": ["Origin", "Authorization", "Content-Type"],
+      "expose_headers": ["Content-Length"],
+      "max_age": "12h"
+    }
+  }
+}
