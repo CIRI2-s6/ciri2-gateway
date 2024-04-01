@@ -6,7 +6,7 @@
   "timeout": "3s",
   "endpoints": [
     {
-      "endpoint": "/components/{id}",
+      "endpoint": "/component/{id}",
       "method": "GET",
       "extra_config": {
         "auth/validator": {
@@ -19,7 +19,114 @@
       "backend": [
         {
           "url_pattern": "/component/{id}",
-          "host": ["http://host.docker.internal:6000"]
+          "host": ["http://host.docker.internal:6000"],
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "component-circuit-breaker",
+              "timeout": 15,
+              "max_errors": 3,
+              "log_status_change": true
+            }
+          }
+        }
+      ],
+      "output_encoding": "json"
+    },
+    {
+      "endpoint": "/component",
+      "method": "POST",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["http://api.ciri2.com"],
+          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "cache": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/component",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "component-circuit-breaker",
+              "timeout": 10,
+              "max_errors": 3,
+              "log_status_change": true
+            }
+          },
+          "host": ["http://host.docker.internal:6000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/component",
+      "input_query_strings": ["skip", "limit", "sort", "filter"],
+      "method": "GET",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["http://api.ciri2.com"],
+          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "cache": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/component",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "component-circuit-breaker",
+              "timeout": 10,
+              "max_errors": 3,
+              "log_status_change": true
+            }
+          },
+          "host": ["http://host.docker.internal:6000"],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/component/check",
+      "method": "POST",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["http://api.ciri2.com"],
+          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "cache": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/component/check",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {
+            "qos/circuit-breaker": {
+              "interval": 60,
+              "name": "component-circuit-breaker",
+              "timeout": 10,
+              "max_errors": 3,
+              "log_status_change": true
+            }
+          },
+          "host": ["http://host.docker.internal:6000"],
+          "disable_host_sanitize": false
         }
       ]
     }
@@ -37,11 +144,19 @@
       "password": "pas5w0rd"
     },
     "security/cors": {
-      "allow_origins": ["*"],
+      "allow_origins": ["http://localhost:4200"],
       "allow_methods": ["POST", "GET"],
       "allow_headers": ["Origin", "Authorization", "Content-Type"],
       "expose_headers": ["Content-Length"],
       "max_age": "12h"
+    },
+    "auth/validator": {
+      "shared_cache_duration": 3600
+    },
+    "security/bot-detector": {
+      "empty_user_agent_is_bot": true,
+      "cache_size": 10000
     }
-  }
+  },
+  "output_encoding": "json"
 }
