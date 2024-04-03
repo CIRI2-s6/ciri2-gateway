@@ -11,8 +11,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["http://api.ciri2.com"],
-          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "audience": ["https://ciri2.com"],
+          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
           "cache": true
         }
       },
@@ -39,8 +39,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["http://api.ciri2.com"],
-          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "audience": ["https://ciri2.com"],
+          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
           "cache": true
         }
       },
@@ -72,8 +72,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["http://api.ciri2.com"],
-          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "audience": ["https://ciri2.com"],
+          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
           "cache": true
         }
       },
@@ -104,8 +104,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["http://api.ciri2.com"],
-          "jwk_url": "https://dev-or5ax9l3.us.auth0.com/.well-known/jwks.json",
+          "audience": ["https://ciri2.com"],
+          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
           "cache": true
         }
       },
