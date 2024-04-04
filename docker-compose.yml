@@ -2,6 +2,10 @@ version: "3"
 services:
   krakend:
     build:
+      args:
+        - AUDIENCE=${AUDIENCE}
+        - JWK_URL=${JWK_URL}
+        - COMPONENT_HOST=${COMPONENT_HOST}
       context: ./gateway
       dockerfile: Dockerfile
     ports:

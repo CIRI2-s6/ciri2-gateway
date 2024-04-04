@@ -11,15 +11,15 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["https://ciri2.com"],
-          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
+          "audience": ["$AUDIENCE"],
+          "jwk_url": "$JWK_URL",
           "cache": true
         }
       },
       "backend": [
         {
           "url_pattern": "/component/{id}",
-          "host": ["http://host.docker.internal:6000"],
+          "host": ["$COMPONENT_HOST"],
           "extra_config": {
             "qos/circuit-breaker": {
               "interval": 60,
@@ -39,8 +39,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["https://ciri2.com"],
-          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
+          "audience": ["$AUDIENCE"],
+          "jwk_url": "$JWK_URL",
           "cache": true
         }
       },
@@ -60,7 +60,7 @@
               "log_status_change": true
             }
           },
-          "host": ["http://host.docker.internal:6000"],
+          "host": ["$COMPONENT_HOST"],
           "disable_host_sanitize": false
         }
       ]
@@ -72,8 +72,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["https://ciri2.com"],
-          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
+          "audience": ["$AUDIENCE"],
+          "jwk_url": "$JWK_URL",
           "cache": true
         }
       },
@@ -93,7 +93,7 @@
               "log_status_change": true
             }
           },
-          "host": ["http://host.docker.internal:6000"],
+          "host": ["$COMPONENT_HOST"],
           "disable_host_sanitize": false
         }
       ]
@@ -104,8 +104,8 @@
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
-          "audience": ["https://ciri2.com"],
-          "jwk_url": "https://ciri2.eu.auth0.com/.well-known/jwks.json",
+          "audience": ["$AUDIENCE"],
+          "jwk_url": "$JWK_URL",
           "cache": true
         }
       },
@@ -125,7 +125,7 @@
               "log_status_change": true
             }
           },
-          "host": ["http://host.docker.internal:6000"],
+          "host": ["$COMPONENT_HOST"],
           "disable_host_sanitize": false
         }
       ]
