@@ -3,14 +3,14 @@ services:
   krakend:
     image: jordywalraven/ciri2-gateway:latest
     build:
-      args:
-        - AUDIENCE=${AUDIENCE}
-        - JWK_URL=${JWK_URL}
-        - COMPONENT_HOST=${COMPONENT_HOST}
       context: ./gateway
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    environment:
+      - AUDIENCE=${AUDIENCE}
+      - JWK_URL=${JWK_URL}
+      - COMPONENT_HOST=${COMPONENT_HOST}
   grafana:
     image: jordywalraven/ciri2-grafana:latest
     build:

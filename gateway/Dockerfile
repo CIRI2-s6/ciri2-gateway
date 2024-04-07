@@ -1,10 +1,12 @@
 FROM devopsfaith/krakend:latest
 
-ARG AUDIENCE
-ARG JWK_URL
-ARG COMPONENT_HOST
 
+ENV JWK_URL ${JWK_URL}
+ENV COMPONENT_HOST ${COMPONENT_HOST}
+ENV AUDIENCE ${AUDIENCE}
 
 COPY krakend.template.json /etc/krakend/krakend.template.json
 
-RUN apk add gettext && export AUDIENCE && export JWK_URL && export COMPONENT_HOST && envsubst < /etc/krakend/krakend.template.json > /etc/krakend/krakend.json
+RUN apk add gettext
+
+CMD envsubst < /etc/krakend/krakend.template.json > /etc/krakend/krakend.json && krakend run -c /etc/krakend/krakend.json
