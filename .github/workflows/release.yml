@@ -16,6 +16,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build
+        env: 
+          AUDIENCE: ${{ secrets.AUDIENCE }}
+          JWK_URL: ${{ secrets.JWK_URL }}
+          COMPONENT_HOST: ${{ secrets.COMPONENT_HOST }}
         run: docker compose build
       - name: publish
         run: docker compose push
