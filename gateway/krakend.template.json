@@ -137,11 +137,11 @@
       "listen_address": ":8090"
     },
     "telemetry/influx": {
-      "address": "http://influxdb:8086",
+      "address": "$INFLUXDB_HOST:$INFLUXDB_PORT",
       "ttl": "25s",
       "buffer_size": 100,
-      "username": "krakend-dev",
-      "password": "pas5w0rd"
+      "username": "$INFLUXDB_USER",
+      "password": "$INFLUXDB_USER_PASSWORD"
     },
     "security/cors": {
       "allow_origins": ["http://localhost:4200", "http://localhost"],
