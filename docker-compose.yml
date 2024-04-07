@@ -1,6 +1,7 @@
 version: "3"
 services:
   krakend:
+    image: jordywalraven/ciri2-gateway:latest
     build:
       args:
         - AUDIENCE=${AUDIENCE}
@@ -11,12 +12,14 @@ services:
     ports:
       - 8080:8080
   grafana:
+    image: jordywalraven/ciri2-grafana:latest
     build:
       context: ./gateway/monitoring/grafana
       dockerfile: Dockerfile
     ports:
       - "4000:3000"
   influxdb:
+    image: jordywalraven/ciri2-influxdb:latest
     build:
       context: ./gateway/db
       dockerfile: Dockerfile

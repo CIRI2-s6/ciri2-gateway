@@ -1,0 +1,29 @@
+name: Release
+
+
+on:
+  release:
+    types: [published]
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: publish
+        uses: pennsignals/publish_docker-compose@v0.1.0
+        with:
+          docker_compose: 'docker-compose.yml'
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        env:
+          AUDIENCE: ${{ secrets.AUDIENCE }}
+          JWK_URL: ${{ secrets.JWK_URL }}
+          COMPONENT_HOST: ${{ secrets.COMPONENT_HOST }}
+
+
+
