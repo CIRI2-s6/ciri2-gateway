@@ -1,4 +1,4 @@
-FROM devopsfaith/krakend:latest
+FROM devopsfaith/krakend:2.6.0
 
 
 ENV JWK_URL ${JWK_URL}
